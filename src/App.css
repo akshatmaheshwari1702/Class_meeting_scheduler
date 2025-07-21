@@ -1,20 +1,62 @@
 .App {
   min-height: 100vh;
-  background-color: #f5f5f5;
+  background: linear-gradient(to right, #fdfbfb, #ebedee);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
 }
 
 .main-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
 .controls-section {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 20px;
   gap: 20px;
+  flex-wrap: wrap;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.content-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.section-header {
+  font-size: 22px;
+  font-weight: 600;
+  color: #2c3e50;
+  padding-left: 4px;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.calendar-section,
+.overview-section {
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
 }
 
 .export-button {
@@ -22,50 +64,38 @@
   color: white;
   border: none;
   padding: 12px 24px;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
   display: flex;
   align-items: center;
   gap: 8px;
-  height: fit-content;
 }
 
 .export-button:hover:not(:disabled) {
   background-color: #219a52;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .export-button:disabled {
   background-color: #95a5a6;
   cursor: not-allowed;
-  opacity: 0.7;
-}
-
-.content-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
-.calendar-section,
-.overview-section {
-  min-height: 500px;
+  opacity: 0.6;
 }
 
 @media (max-width: 1024px) {
   .content-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .controls-section {
     flex-direction: column;
     align-items: stretch;
   }
-  
+
   .export-button {
     width: 100%;
     justify-content: center;
@@ -74,6 +104,10 @@
 
 @media (max-width: 768px) {
   .main-container {
-    padding: 10px;
+    padding: 16px 10px;
+  }
+
+  .section-header {
+    font-size: 18px;
   }
 }

@@ -1,20 +1,17 @@
-import React from "react";
+import React from 'react';
 
-const Header = () => {
-  return (
-    <header style={headerStyles}>
-      <h1>Class Meeting Scheduler</h1>
-      <p>Schedule and manage student meetings efficiently</p>
-    </header>
-  );
-};
-
-const headerStyles = {
-  backgroundColor: "#2c3e50",
-  color: "white",
-  padding: "20px",
-  textAlign: "center",
-  boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
-};
+const Header = () => (
+  <header style={{
+    background: '#2d3748',
+    color: '#fff',
+    padding: '1rem 2rem',
+    textAlign: 'center',
+    boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
+  }}>
+    <h1 style={{ margin: 0, fontSize: '2rem', letterSpacing: '1px' }}>
+      Meeting Scheduler
+    </h1>
+  </header>
+);
 
 export default Header;

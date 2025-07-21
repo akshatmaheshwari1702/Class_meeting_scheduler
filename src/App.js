@@ -1,12 +1,12 @@
 import { useState, useEffect, useMemo } from "react";
 import "./App.css";
-import Header from "./components/Layout/Header";
 import Calendar from "./components/Calendar/Calendar";
 import MeetingOverview from "./components/MeetingOverview/MeetingOverview";
 import Filters from "./components/Filters/Filters";
 import { studentsData } from "./data/dummyData";
 import { scheduleMeetings, getClassWiseSummary } from "./utils/schedulingLogic";
 import { exportToExcel } from "./utils/excelExport";
+import Header from "./components/Layout/Header";
 
 function App() {
   const [students] = useState(studentsData);
@@ -68,41 +68,43 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <Header />
+   <div className="App">
+  <Header />
+  <div className="main-container">
+    <section className="controls-section">
+      <Filters
+        students={students}
+        filters={filters}
+        onFilterChange={handleFilterChange}
+      />
+      <button
+        className="export-button"
+        onClick={handleExportToExcel}
+        disabled={Object.keys(schedule).length === 0}
+      >
+        📥 Export to Excel
+      </button>
+    </section>
 
-      <div className="main-container">
-        <div className="controls-section">
-          <Filters
-            students={students}
-            filters={filters}
-            onFilterChange={handleFilterChange}
+    <section className="content-section">
+      <div className="section-header">📅 Select Dates & View Schedule</div>
+      <div className="content-grid">
+        <div className="calendar-section card">
+          <Calendar
+            selectedDates={selectedDates}
+            onDateSelect={handleDateSelect}
+            scheduledMeetings={schedule}
           />
-
-          <button
-            className="export-button"
-            onClick={handleExportToExcel}
-            disabled={Object.keys(schedule).length === 0}
-          >
-            📥 Export to Excel
-          </button>
         </div>
 
-        <div className="content-grid">
-          <div className="calendar-section">
-            <Calendar
-              selectedDates={selectedDates}
-              onDateSelect={handleDateSelect}
-              scheduledMeetings={schedule}
-            />
-          </div>
-
-          <div className="overview-section">
-            <MeetingOverview schedule={schedule} summary={summary} />
-          </div>
+        <div className="overview-section card">
+          <MeetingOverview schedule={schedule} summary={summary} />
         </div>
       </div>
-    </div>
+    </section>
+  </div>
+</div>
+
   );
 }
 
